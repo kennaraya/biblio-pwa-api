@@ -1,0 +1,22 @@
+{
+  "name": "Biblioteca (PWA + API)",   
+  "short_name": "Biblioteca",         
+  "description": "Catálogo y reservas con backend (demo).", 
+  "start_url": "/",                   
+  "scope": "/",                       
+  "display": "standalone",             
+  "background_color": "#f8f6ff",       
+  "theme_color": "#cdb4db",           
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",    
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",    
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

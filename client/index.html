@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Biblioteca PWA + API</title>
+
+  <!-- REQUISITOS PWA: Manifest y color del tema -->
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#cdb4db" />
+  <link rel="icon" href="/icons/icon-192.png" />
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="top">
+    <div class="top__inner">
+      <div class="brand" aria-label="Biblioteca">
+        <img class="brand__logo" src="/icons/icon-192.png" alt="Logo Biblioteca" width="40" height="40" />
+        <div class="brand__txt">
+          <h1>Biblioteca</h1>
+          <p>PWA conectada a API (reservas reales en servidor)</p>
+        </div>
+      </div>
+
+      <div class="top__actions">
+        <!-- installBtn: Oculto por defecto, se muestra vía JS -->
+        <button id="installBtn" class="btn btn--ghost" type="button" hidden>Instalar</button>
+        <button id="resetBtn" class="btn btn--ghost" type="button" title="Borra datos locales">Reiniciar</button>
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <span id="netDot" class="dot" aria-hidden="true"></span>
+      <span id="netText">Comprobando conexión…</span>
+      <span class="statusbar__sep">•</span>
+      <span id="swText">Inicializando…</span>
+      <span class="statusbar__sep">•</span>
+      <span class="muted">API:</span>
+      <span id="apiText">—</span>
+    </div>
+  </header>
+
+  <main id="contenido" class="container">
+    <section class="grid">
+      <article class="card">
+        <h2>Tu sesión (demo)</h2>
+        <p class="muted">En esta demo, “inicias sesión” indicando un identificador en <b>X-User</b>.</p>
+
+        <div class="row">
+          <label class="field" for="userId">
+            <span class="field__label">Usuario</span>
+            <input id="userId" type="text" placeholder="ej.: ana" autocomplete="off" />
+          </label>
+
+          <button id="saveUserBtn" class="btn" type="button">Guardar</button>
+        </div>
+
+        <hr class="hr" />
+
+        <h2>Buscar en el catálogo</h2>
+
+        <div class="row">
+          <label class="field" for="q">
+            <span class="field__label">Búsqueda</span>
+            <input id="q" type="search" placeholder="Ej.: García Márquez" autocomplete="off" />
+          </label>
+
+          <label class="field" for="filtro">
+            <span class="field__label">Filtro</span>
+            <select id="filtro">
+              <option value="all">Todos</option>
+              <option value="available">Disponibles</option>
+              <option value="reserved">Reservados por mí</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row row--tight">
+          <button id="btnBuscar" class="btn" type="button">Buscar</button>
+          <button id="btnLimpiar" class="btn btn--soft" type="button">Limpiar</button>
+        </div>
+
+        <div class="pillbar" aria-label="Sugerencias">
+          <button class="pill" data-preset="novela">Novela</button>
+          <button class="pill" data-preset="ciencia">Ciencia</button>
+          <button class="pill" data-preset="infantil">Infantil</button>
+          <button class="pill" data-preset="historia">Historia</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card__head">
+          <h2>Resultados</h2>
+          <span id="count" class="badge">0</span>
+        </div>
+
+        <ul id="lista" class="list" aria-live="polite" aria-label="Listado de libros"></ul>
+
+        <div id="empty" class="empty" hidden>
+          <p><b>No hay resultados.</b></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <div class="card__head">
+        <h2>Detalle</h2>
+        <span id="detailHint" class="muted">Selecciona un libro para ver más.</span>
+      </div>
+
+      <div id="detail" class="detail" hidden>
+        <div class="detail__main">
+          <h3 id="dTitle" style="margin:0 0 4px;"></h3>
+          <p class="muted" style="margin:0;">
+            <span id="dAuthor"></span> · <span id="dYear"></span>
+          </p>
+
+          <div class="tags" id="dTags" aria-label="Etiquetas"></div>
+
+          <div class="info">
+            <div class="info__item">
+              <div class="info__k">Estado</div>
+              <div id="dAvailability" class="info__v"></div>
+            </div>
+            <div class="info__item">
+              <div class="info__k">Ubicación</div>
+              <div id="dLocation" class="info__v"></div>
+            </div>
+            <div class="info__item">
+              <div class="info__k">ISBN</div>
+              <div id="dIsbn" class="info__v"></div>
+            </div>
+          </div>
+
+          <div class="row row--tight" style="margin-top:12px;">
+            <button id="reserveBtn" class="btn" type="button">Reservar</button>
+            <button id="shareBtn" class="btn btn--soft" type="button">Compartir</button>
+          </div>
+
+          <p id="actionMsg" class="muted" style="margin:10px 0 0;"></p>
+        </div>
+
+        <aside class="detail__side">
+          <div class="panel">
+            <h4 style="margin:0 0 8px;">Mis reservas</h4>
+            <ul id="myRes" class="mini"></ul>
+            <p id="myResEmpty" class="muted" style="margin:0;" hidden>No tienes reservas todavía.</p>
+          </div>
+
+          <div class="panel" style="margin-top:10px;">
+            <h4 style="margin:0 0 8px;">Offline</h4>
+            <p class="muted" style="margin:0;">
+              La app guarda el “shell” y el catálogo público.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p class="muted" style="margin:0;">Demo educativa.</p>
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{
+  "books": [
+    {
+      "id": "bk-1001",
+      "title": "Cien años de soledad",
+      "author": "Gabriel García Márquez",
+      "year": 1967,
+      "isbn": "978-84-376-0494-7",
+      "location": "Sala General · Pasillo A · Estante 3",
+      "available": true,
+      "tags": ["novela", "realismo mágico", "latinoamérica"]
+    },
+    {
+      "id": "bk-1002",
+      "title": "Don Quijote de la Mancha",
+      "author": "Miguel de Cervantes",
+      "year": 1605,
+      "isbn": "978-84-376-0495-4",
+      "location": "Clásicos · Pasillo C · Estante 1",
+      "available": true,
+      "tags": ["clásico", "novela", "aventura"]
+    },
+    {
+      "id": "bk-1003",
+      "title": "La sombra del viento",
+      "author": "Carlos Ruiz Zafón",
+      "year": 2001,
+      "isbn": "978-84-376-0496-1",
+      "location": "Narrativa · Pasillo B · Estante 2",
+      "available": true,
+      "tags": ["novela", "misterio", "barcelona"]
+    },
+    {
+      "id": "bk-1004",
+      "title": "Sapiens: De animales a dioses",
+      "author": "Yuval Noah Harari",
+      "year": 2011,
+      "isbn": "978-84-376-0497-8",
+      "location": "No Ficción · Pasillo D · Estante 4",
+      "available": true,
+      "tags": ["historia", "ensayo", "ciencia"]
+    },
+    {
+      "id": "bk-1005",
+      "title": "Breves respuestas a las grandes preguntas",
+      "author": "Stephen Hawking",
+      "year": 2018,
+      "isbn": "978-84-376-0498-5",
+      "location": "Ciencia · Pasillo E · Estante 1",
+      "available": true,
+      "tags": ["ciencia", "cosmología", "divulgación"]
+    },
+    {
+      "id": "bk-1006",
+      "title": "El principito",
+      "author": "Antoine de Saint-Exupéry",
+      "year": 1943,
+      "isbn": "978-84-376-0499-2",
+      "location": "Infantil · Pasillo F · Estante 1",
+      "available": true,
+      "tags": ["infantil", "clásico", "fábula"]
+    }
+  ]
+}

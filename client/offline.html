@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />                           <!-- Codificación de caracteres -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />  <!-- Responsive -->
+  <meta name="theme-color" content="#cdb4db" />      <!-- Color del sistema (consistencia) -->
+  <title>Sin conexión · Biblioteca</title>
+</head>
+<body style="margin:0; font-family:system-ui; background:linear-gradient(180deg,#f8f6ff,#f1fbff,#fff7f2); color:#1f2a44;">
+  <main style="max-width:820px; margin:0 auto; padding:24px 16px;">
+    <section style="background:rgba(255,255,255,.78); border:1px solid #e6e9f7; border-radius:18px; padding:16px; box-shadow:0 12px 30px rgba(31,42,68,.08);">
+      <h1 style="margin:0 0 6px;">Estás sin conexión</h1>    <!-- Mensaje principal -->
+      <p style="margin:0; color:#51618a;">
+        Puedes seguir abriendo la app y ver el último catálogo guardado.
+        Para reservar/cancelar necesitas conexión.
+      </p>
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+        <!-- Botón para volver a la raíz (que puede estar en caché del App Shell) -->
+        <a href="/"
+           style="text-decoration:none; display:inline-block; padding:12px 14px;
+                  border-radius:14px; color:#1f2a44; font-weight:800;
+                  border:1px solid rgba(205,180,219,.9);
+                  background:linear-gradient(180deg,rgba(205,180,219,.92),rgba(189,224,254,.65));"
+        >Volver al inicio</a>
+        <!-- Botón para reintentar si volvió la conexión -->
+        <button onclick="location.reload()"
+                style="padding:12px 14px; border-radius:14px; font-weight:800;
+                       border:1px solid #e6e9f7; background:rgba(255,255,255,.86);
+                       cursor:pointer; color:#1f2a44;"
+        >Reintentar</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
