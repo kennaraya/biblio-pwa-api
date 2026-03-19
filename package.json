@@ -1,0 +1,13 @@
+{
+  "name": "biblio-pwa-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PWA de biblioteca con API (Express) en el mismo origen",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
